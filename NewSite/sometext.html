@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anusha Lavanuru | MSCS</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Material Design Bootstrap -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Font: Noto Sans Oriya Medium -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@500&display=swap" rel="stylesheet">
+    <style>
+
+        :root {
+            --primary-color: #007bff; 
+            --secondary-color: #6c757d; 
+            --background-color: #f8f9fa; 
+            --text-color: #212529; 
+            --link-hover-color: #0056b3; 
+            --card-title-color: #495057;
+        }
+
+        body {
+            /* font-family: 'Noto Sans Oriya', sans-serif; */
+            font-family: 'Source Sans Pro', sans-serif; 
+        }
+
+        body::before {
+            content: '';
+            position: fixed; 
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./images/columbia.jpg');  
+            background-repeat: repeat; 
+            background-size: auto; 
+            z-index: -1; 
+            filter: blur(10px); 
+            -webkit-filter: blur(10px); 
+            opacity: 0.5;
+        }
+
+
+        a {
+          text-decoration: none;
+          color: inherit;
+          border-bottom: dotted 1px rgba(128, 128, 128, 0.5);
+          -moz-transition: color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+          -webkit-transition: color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+          -ms-transition: color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+          transition: color 0.35s ease-in-out, border-bottom-color 0.35s ease-in-out;
+          outline: 0;
+        }
+
+        .sidebar {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #222629;
+            width: 100%;
+            max-width: 300px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar .logo-image {
+          border-radius: 6px;
+          width: 250px;
+          margin-top: 10px;
+        }
+
+        .nav-link {
+            padding: 10px 15px;
+            border-radius: 6px; 
+            margin-bottom: 10px; 
+            transition: all 0.3s ease; 
+
+            /* text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            max-width: 100%;  */
+        }
+
+        .nav-link:last-child {
+            margin-bottom: 0; 
+        }
+
+        .nav-link.active {
+            background-color: var(--link-hover-color);
+            color: white; 
+            font-weight: bold; 
+            border-radius: 6px; 
+        }
+
+        .main-content {
+            margin-left: 300px;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        .main-content.menu-active {
+            margin-left: 300px;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                width: 100%;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .main-content.menu-active {
+                margin-left: 300px;
+            }
+        }
+
+        .timeline {
+            position: relative;
+            list-style: none;
+            margin: 50px 0;
+            padding: 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: #dee2e6;
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: -7rem 0;
+        }
+
+        .timeline-item .timeline-date {
+            position: relative;
+            top: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-date {
+            left: calc(35%);
+            text-align: right;
+            margin-left: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-date {
+            left: calc(50%);
+            text-align: left;
+            margin-left: 20px;
+        }
+
+        .timeline-item .timeline-dot {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #0d6efd;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .timeline-item .timeline-content {
+            position: relative;
+            background: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1.2rem;
+            width: 45%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 45px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item .timeline-content:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            right: -2%;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            left: 53%;
+        }
+        
+        @media (max-width: 768px) {
+          .timeline-item:nth-child(odd) .timeline-date {
+            left: calc(22%);
+            text-align: right;
+            margin-left: -10px;
+          }
+        }
+
+        .tech-stack {
+            background-color: #f8f9fa;
+            padding: 3rem 1rem;
+        }
+
+        .tech-stack h2 {
+            margin-bottom: 2rem;
+        }
+
+        .tech-stack .icon {
+            font-size: 2.5rem;
+            color: #0d6efd;
+        }
+
+        .tech-stack .icon:hover {
+            color: #0a58ca;
+        }
+
+        .tech-stack .col-md-3 {
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .tech-stack .icon {
+                font-size: 2rem;
+            }
+
+            .tech-stack h2 {
+                font-size: 1.5rem;
+            }
+
+            .tech-stack .col-md-3 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+
+            .gth {
+              margin-top: 50px;
+            }
+        }
+
+        .project-card {
+          color: var(--card-title-color);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .work-exp-ind-card {
+            color: var(--card-title-color);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-text-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2; 
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-height: 3rem; 
+          line-height: 1.5; 
+        }
+
+        .card-text-1 {
+          display: -webkit-box;
+          -webkit-line-clamp: 1; 
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-height: 3rem; 
+          line-height: 1.5; 
+        }
+
+        .card-body {
+          padding: 18px;
+        }
+
+        .project-image {
+          height: 230px; 
+          width: 100%; 
+          object-fit: cover; 
+          object-position: center; 
+        }
+
+        .name-title {
+            font-size: 3rem; 
+            font-weight: 1000;
+            position: relative;
+            margin-bottom: 20px; 
+            margin-top: 20px;
+        }
+
+        .name-title-modif {
+            font-size: 3rem; 
+            font-weight: 1000;
+            position: relative;
+        }
+
+        .name-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px; 
+            width: 100%; 
+            height: 7px; 
+            background-color: var(--card-title-color); /* Color of the underline */
+        }
+
+        .name-title-modif::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -10px; 
+            width: 100%; 
+            height: 7px; 
+            background-color: var(--card-title-color); /* Color of the underline */
+        }
+
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".nav" data-bs-offset="50" tabindex="0">
+    <div class="container-fluid">
+        <!-- Mobile Menu Button -->
+        <button id="menu-toggle" class="btn btn-primary d-md-none" style="position: fixed; top: 15px; left: 15px; z-index: 1100;">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar col-md-3 text-white d-flex flex-column align-items-center py-4">
+            <div class="text-center">
+                <img src="./images/Anusha_nyc.jpg" class="img-fluid mb-3 logo-image" alt="Anusha Lavanuru">
+                <h4 style="letter-spacing: -0.5px; font-weight: 550;"><a href="index.html">Anusha Lavanuru</a></h4>
+                <p class="text-muted" style="font-size: 13px; margin-top: -6px;">MSCS @ Columbia University</p>
+            </div>
+            <nav id="sidebar-nav" class="nav flex-column w-100" style="margin-top: 25px;">
+                <a href="#cv" class="nav-link text-white d-flex align-items-center justify-content-between"><i class="fas fa-home me-2"></i>CV / Bio</a>
+                <a href="#experience" class="nav-link text-white d-flex align-items-center justify-content-between"><i class="fas fa-user me-2"></i>Experience</a>
+                <a href="#projects" class="nav-link text-white d-flex align-items-center justify-content-between"><i class="fas fa-th me-2"></i>Research Projects</a>
+                <a href="#tech-stack" class="nav-link text-white d-flex align-items-center justify-content-between"><i class="fas fa-cogs me-2"></i>Tech Stack</a>
+                <a href="#contact" class="nav-link text-white d-flex align-items-center justify-content-between"><i class="fas fa-envelope me-2"></i>Contact</a>
+            </nav>
+            <div class="mt-auto">
+                <a href="https://www.linkedin.com/in/anusha-lavanuru/" class="me-2"><i class="fab fa-linkedin"></i></a>
+                <a href="mailto:al4568@columbia.edu" class="me-2"><i class="fas fa-envelope"></i></a>
+                <a href="https://github.com/AnushaLavanuru5"><i class="fab fa-github"></i></a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div id="main-content" class="main-content">
+            <!-- <section class="bg-light p-3" style="border-radius: 6px;">
+                <h1 class="name-title-modif">Anusha Lavanuru, MSCS 🎓👩‍💻</h1>
+            </section> -->
+            <!-- CV Section -->
+            <section id="cv" class="p-4">
+                <h1 class="name-title">Anusha Lavanuru, MSCS 🎓👩‍💻</h1>
+                <div class="row">
+                <div class="col-md-6">
+                  <div class="card mt-3 work-exp-ind-card">
+                    <!-- <div class="card-header"></div> -->
+                    <div class="card-body">
+                      <h5 class="card-title">About me</h5>
+                      <p class="card-text">Hi there! 👋 I’m <strong>Anusha Lavanuru</strong>, a Master’s student in Computer Science at <strong>Columbia University</strong>, graduating in December 2024. My love for technology sparked when I visited ISRO’s satellite launchpad as a kid 🚀. Seeing innovation, logic, and automation come together was <em>mind-blowing</em> 🤯, and I’ve been on a mission to create cool, impactful solutions ever since.</p>
+                      <p class="card-text">I’m all about blending creativity and tech 🎨💻. Whether it’s building immersive AR experiences, crafting scalable systems, or tinkering with AI and ML I love solving real-world problems and pushing the boundaries of what’s possible.</p>
+                      <p class="card-text">Currently, at Columbia University, I’m exploring the coolest tech like Computer Vision 👁️, NLP 🗣️, AR/VR 🕶️, and Data Visualization 📊. I also get to be a Teaching Assistant 👩‍🏫 for courses like Python for Data Analysis, UI Design, and Databases. Helping others learn has been incredibly rewarding! 🌟</p>
+                    </div>
+                  </div>
+                  <div class="card mt-2 work-exp-ind-card">
+                    <div class="card-body">
+                      <h5 class="card-title">Where It All Started 🌱</h5>
+                      <p class="card-text">
+                        I began my educational journey at Zion Matriculation Higher Secondary School in Chennai and later continued at Narayana Junior College in Hyderabad, where I discovered my love for coding 💡. <br> For my undergrad, I graduated as the college topper 🏅 with a degree in Computer Science from Gokaraju Rangaraju Institute of Engineering and Technology. I dove deep into:
+                      </p>
+                    </div>
+                  </div>
+
+
+                </div>
+                <div class="col-md-6">
+                  <div class="card mt-3 work-exp-ind-card">
+                    <!-- <div class="card-header"></div> -->
+                    <div class="card-body">
+                      <h5 class="card-title">Let’s Connect!</h5>
+                      <p class="card-text">If you’re curious about my work or just want to chat about my experiences, tech, or anything fun, feel free to reach out!</p>
+                      <a href="./Resume_Anusha_Nov25.pdf" class="btn btn-primary btn-lg btn-block" download="AnushaLavanuruResume">Download Resume</a>
+                    </div>
+                  </div>
+
+                  <div class="card mt-2 work-exp-ind-card">
+                    <!-- <div class="card-header"></div> -->
+                    <div class="card-body">
+                      <h5 class="card-title">What I’m Up To Now 🛠️</h5>
+                      <p class="card-text">At Columbia University, I get to wear multiple hats 🎓🔍: <br><br>
+                        🎮 In the Computer Enabled Abilities Lab, I’m developing AR solutions to make tech more accessible and preserve community history. <br><br>
+                        🌍 In the Computer Graphics and User Interfaces Lab, I dive into geospatial data visualization and XR applications, working with Unity, Blender, and React to bridge the 2D and 3D worlds. <br> <br>
+                        Beyond research, I’ve explored exciting NLP and ML projects like gesture recognition 👋🤖 and credit risk assessment 💰🔍. Oh, and during Summer 2024, I wore my industry intern hat 🎯 as a Software Development Engineer Intern at a fintech startup. There, I built dynamic React components, automated workflows with an OCR system, and optimized performance like a boss 🚀.</p>
+                    </div>
+                  </div>
+                </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="p-5 bg-light" style="border-radius: 6px;">
+                <h2 class="text-center mb-5"><b>Work Experience</b></h2>
+                <ul class="timeline" style="margin-top: 8rem;margin-bottom: 7rem;">
+                    <li class="timeline-item">
+                        <span class="timeline-date">Sept 2024 - Present</span>
+                        <span class="timeline-dot"></span>
+                        <div class="timeline-content">
+                            <img style="width: 100%;" src="./images/WorkExp/cgui.png" alt="Anusha Lavanuru headshot" />
+                            <h5 class="fw-bold" style="margin-top: 20px;">Research Assistant @ CGUI</h5>
+                            <p style="margin-bottom: -8px;">Worked on building an interactive geospatial visualization platform using advanced AR/VR techniques.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <span class="timeline-date">May 2024 - Present</span>
+                        <span class="timeline-dot"></span>
+                        <div class="timeline-content">
+                            <img style="width: 100%;" src="./images/WorkExp/cealLogo.png" alt="Anusha Lavanuru headshot" />
+                            <h5 class="fw-bold" style="margin-top: 20px;">Research Assistant @ CEAL</h5>
+                            <p style="margin-bottom: -8px;">Developed augmented reality projects to visualize community histories with interactive AR storytelling.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <span class="timeline-date">May 2024 - Aug 2024</span>
+                        <span class="timeline-dot"></span>
+                        <div class="timeline-content">
+                            <img style="width: 100%;" src="./images/WorkExp/cbs.png" alt="Anusha Lavanuru headshot" />
+                            <h5 class="fw-bold" style="margin-top: 20px;">SDE Intern @ Columbia Build Lab</h5>
+                            <p style="margin-bottom: -8px;">Worked on building a fintech application for trade tokenization.</p>
+                        </div>
+                    </li>
+                    <li class="timeline-item">
+                        <span class="timeline-date">Aug 2021 - Aug 2023</span>
+                        <span class="timeline-dot"></span>
+                        <div class="timeline-content">
+                            <img style="width: 100%;" src="./images/WorkExp/shureLogo.png" alt="Anusha Lavanuru headshot" />
+                            <h5 class="fw-bold" style="margin-top: 20px;">Automation Engineer @ Shure</h5>
+                            <p style="margin-bottom: -8px;">Automated test cases for Shure's Desktop Application - "Shure Designer".</p>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Projects Section -->
+            <section id="projects" class="p-5">
+                <h2 class="text-center mb-5"><b>Projects</b></h2>
+                <div class="row">
+                    <div class="col-md-4 mb-4" onclick="onClickProjectContent('hgr','project-sidebar')">
+                        <div class="card project-card h-100">
+                            <img src="images/hg.jpg" class="card-img-top project-image" alt="Hand Gesture Recognition">
+                            <div class="card-body" style="margin-top: -5px;">
+                                <h5 class="card-title"><b>Hand Gesture Recognition</b></h5>
+                                <p class="card-text-2">Developed a machine learning-based system to recognize hand gestures for enhancing human-computer interaction. The project explored feature extraction techniques and leveraged image processing and neural networks to classify static hand gestures effectively.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card project-card h-100" onclick="onClickProjectContent('ie','project-sidebar')">
+                            <img src="images/IMG_1202.jpg" class="card-img-top project-image" alt="Image Enhancement using GANs">
+                            <div class="card-body" style="margin-top: -5px;">
+                                <h5 class="card-title"><b>Image Enhancement using GANs</b></h5>
+                                <p class="card-text-1">Developed a machine learning model leveraging Generative Adversarial Networks (GANs) to enhance the visual quality of images. This project focused on improving image sharpness, contrast, and brightness, creating high-quality outputs from low-resolution or noisy images.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card project-card h-100" onclick="onClickProjectContent('ch','project-sidebar')">
+                            <img src="images/harlem.jpeg" class="card-img-top project-image" alt="Community History through AR">
+                            <div class="card-body" style="margin-top: -5px;">
+                                <h5 class="card-title"><b>Community History through AR</b></h5>
+                                <p class="card-text-2">As gentrification transforms urban communities, the cultural heritage and lived experiences of areas like Harlem, New York, are at risk of being lost. Community History Through AR is an Augmented Reality (AR) application designed to preserve the historical and cultural significance of the Harlem region while fostering civic engagement.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                      <div class="card project-card h-100" onclick="onClickProjectContent('polxr','project-sidebar')">
+                          <img src="images/loginbackground.jpg" class="card-img-top project-image" alt="Hand Gesture Recognition">
+                          <div class="card-body" style="margin-top: -5px;">
+                              <h5 class="card-title"><b>PolXR (Immersive geospatial Visualization Platform)</b></h5>
+                              <p class="card-text-1">PolXR is an innovative platform developed under the VISER (Visualization for Enhanced Scientific Exploration in Research) initiative. This tool leverages Extended Reality (XR) technologies to provide immersive visualization of polarimetric geospatial data, enabling researchers to analyze and interpret complex datasets in an interactive 3D environment.</p>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-md-4 mb-4">
+                      <div class="card project-card h-100" onclick="onClickProjectContent('emo','project-sidebar')">
+                          <img src="images/emoverse.png" class="card-img-top project-image" alt="Image Enhancement using GANs">
+                          <div class="card-body" style="margin-top: -5px;">
+                              <h5 class="card-title"><b>Emoverse</b></h5>
+                              <p class="card-text-2">EmoVerse is an Augmented Reality (AR) application designed to promote emotional well-being by enabling users to externalize, share, and interact with emotions in a virtual space. Targeted at addressing academic stress among university students, EmoVerse leverages AR technology to foster asynchronous emotional sharing and create a supportive community.</p>
+                          </div>
+                      </div>  
+                  </div>
+                  <div class="col-md-4 mb-4">
+                      <div class="card project-card h-100" onclick="onClickProjectContent('nomad','project-sidebar')">
+                          <img src="images/nomadfi.png" class="card-img-top project-image" alt="Community History through AR">
+                          <div class="card-body" style="margin-top: -5px;">
+                              <h5 class="card-title"><b>NomadFi</b></h5>
+                              <p class="card-text-2">NomadFi is a comprehensive fintech platform designed to provide users with seamless financial solutions through dynamic interfaces and advanced automation. The project focuses on creating an efficient user experience while automating backend processes to optimize performance and enhance functionality.</p>
+                          </div>
+                      </div>
+                  </div>
+                </div>
+            </section>
+
+            <!-- Tech Stack Section -->
+            <section id="tech-stack" class="tech-stack" style="border-radius: 6px;">
+              <div class="container">
+                  <h2 class="text-center mb-5"><b>Tech Stack</b></h2>
+                  <div class="row text-center">
+                      <div class="col-md-2 col-4">
+                          <i class="fab fa-python icon" style="color: #3776AB;"></i>
+                          <p>Python</p>
+                      </div>
+                      <div class="col-md-2 col-4">
+                          <i class="fab fa-java icon" style="color: #5382A1;"></i>
+                          <p>Java</p>
+                      </div>
+                      <div class="col-md-2 col-4">
+                          <i class="fas fa-code icon" style="color: #007ACC;"></i>
+                          <p>C++</p>
+                      </div>
+                      <div class="col-md-2 col-4">
+                          <i class="fab fa-react icon" style="color: #61DAFB;"></i>
+                          <p>React</p>
+                      </div>
+                      <div class="col-md-2 col-4">
+                          <i class="fas fa-code icon" style="color: #007ACC;"></i>
+                          <p>TypeScript</p>
+                      </div>
+                      <div class="col-md-2 col-4">
+                          <i class="fab fa-js-square icon" style="color: #F7DF1E;"></i>
+                          <p>JavaScript</p>
+                      </div>
+                  </div>
+                  <div class="row text-center mt-4">
+                      <div class="col-md-3">
+                          <i class="fas fa-database icon" style="color: #336791;"></i>
+                          <p>PostgreSQL</p>
+                      </div>
+                      <div class="col-md-3">
+                          <i class="fa-solid fa-brain icon" style="color: #FF6F61;"></i>
+                          <p>AI</p>
+                      </div>
+                      <div class="col-md-3">
+                          <i class="fas fa-cogs icon" style="color: #F28D35;"></i>
+                          <p>Machine Learning</p>
+                      </div>
+                      <div class="col-md-3">
+                          <i class="fa-brands fa-aws icon" style="color: #FF9900;"></i>
+                          <p>AWS</p>
+                      </div>
+                  </div>
+                  <div class="row text-center">
+                      <div class="col-md-2 col-4">
+                          <i class="fab fa-unity icon" style="color: #222C37;"></i>
+                          <p>Unity</p>
+                      </div>
+                      <div class="col-md-2 col-4">
+                          <i class="fas fa-vr-cardboard icon" style="color: #FF6347;"></i>
+                          <p>AR/VR</p>
+                      </div>
+                      <div class="col-md-2 col-4">
+                          <i class="fas fa-database icon" style="color: #4479A1;"></i>
+                          <p>mySQL</p>
+                      </div>
+                      <div class="col-md-2 col-4">
+                          <i class="fa-brands fa-github icon" style="color: #181717;"></i>
+                          <p>Git</p>
+                      </div>
+                      <div class="col-md-2 col-4">
+                          <i class="fa-brands fa-jenkins icon" style="color: #D33833;"></i>
+                          <p>Jenkins</p>
+                      </div>
+                      <div class="col-md-2 col-4">
+                          <i class="fa-brands fa-jira icon" style="color: #0052CC;"></i>
+                          <p>Jira</p>
+                      </div>
+                  </div>
+              </div>
+          </section>
+          
+
+            <!-- Contact Section -->
+            <section id="contact" class="p-5">
+              <div class="container" style="color: var(--card-title-color);">
+                  <h2 class="text-center mb-5"><b>Contact</b></h2>
+                  <div class="row justify-content-md-center">
+
+                      <!-- Contact Info -->
+                      <div class="col-md-4">
+                      <h4 class="mb-3"><b>Get in Touch</b></h4>
+                      <p style="margin-top: 30px;"><i class="fas fa-phone-alt me-2"></i><strong>Phone:</strong> <a href="tel:+1234567890" class="text-decoration-none text-dark">+1 (234) 567-890</a></p>
+                      <p><i class="fas fa-envelope me-2"></i><strong>Email:</strong> <a href="mailto:al4568@columbia.edu" class="text-decoration-none text-dark">al4568@columbia.edu</a></p>
+                      <p style="margin-bottom: 25px;"><i class="fas fa-map-marker-alt me-2"></i><strong>Location:</strong> New York, NY</p>
+                      <div class="mt-3">
+                          <a href="https://www.linkedin.com/in/anusha-lavanuru/" class="btn btn-primary btn-sm btn-block">
+                              <i class="fab fa-linkedin me-1"></i> LinkedIn
+                          </a>
+                          <a href="https://github.com/AnushaLavanuru5" class="btn btn-dark btn-sm btn-block">
+                              <i class="fab fa-github me-1"></i> GitHub
+                          </a>
+                      </div>
+                      </div>
+
+                      <!-- Contact Form -->
+                      <div class="col-md-4 offset-md-1 gth">
+                          <h4 class="mb-3"><b>Send a Message</b></h4>
+                          <form action="https://formspree.io/f/xldddwry" method="POST">
+                              <div class="mb-3">
+                                  <input type="email" class="form-control" id="email" name="email" placeholder="Your Email" required>
+                              </div>
+                              <div class="mb-3">
+                                  <textarea class="form-control" id="message" name="message" rows="4" placeholder="Your Message" required></textarea>
+                              </div>
+                              <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </section>
+          
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Material Design Bootstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.0/mdb.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const menuToggle = document.getElementById('menu-toggle');
+    const sidebar = document.getElementById('sidebar-nav');
+    const mainContent = document.getElementById('main-content');
+
+    // Save original content for restoration
+    const originalSidebarHTML = sidebar.innerHTML;
+    const originalMainContentHTML = mainContent.innerHTML;
+
+    // Toggle sidebar on mobile
+    menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+        mainContent.classList.toggle('menu-active');
+    });
+
+    // Function to attach card click listeners
+    function attachCardListeners() {
+        const projectCards = document.querySelectorAll('.project-card');
+        projectCards.forEach((card, index) => {
+            card.addEventListener('click', () => loadProjectContent(index));
+        });
+    }
+
+    // Load project content dynamically
+    function loadProjectContent(index) {
+        const projectFile = `ProjectsNormal/project${index + 1}.html`; 
+        fetch(projectFile)
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.text();
+            })
+            .then(html => {
+                sidebar.innerHTML = `
+                        <a id="home-btn" href="./sometext.html" class="nav-link text-white d-flex align-items-center justify-content-between">
+                            <i class="fas fa-home me-2"></i> Home
+                        </a>
+
+                        ${Array.from(document.querySelectorAll('.project-card')).map((_, i) => `
+                            <a onclick="loadProjectContentNavBar(${i})" class="nav-link text-white d-flex align-items-center justify-content-between ${i === index ? 'active' : ''}">
+                                <i class="fas fa-project-diagram me-2"></i> Project ${i + 1}
+                            </a>
+                        `).join('')}
+                `;
+
+                mainContent.innerHTML = html;
+
+                document.getElementById('home-btn').addEventListener('click', () => {
+                    sidebar.innerHTML = originalSidebarHTML;
+                    mainContent.innerHTML = originalMainContentHTML;
+                    attachCardListeners(); 
+                    reinitializeScrollSpy();
+                });
+            })
+            .catch(error => console.error('Error loading project content:', error));
+    }
+
+    function onClickProjectContent(name, bar) {
+        const projectFile = `ProjectsNormal/${name}.html`; 
+        const sidebarFile = `Sidebars/${bar}.html`; 
+        const sidebarId = `side-${name}`;
+
+        fetch(projectFile)
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.text();
+            })
+            .then(html => {
+                mainContent.innerHTML = html;
+            })
+            .catch(error => console.error('Error loading project content:', error));
+
+        fetch(sidebarFile)
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.text();
+            })
+            .then(html => {
+                sidebar.innerHTML = html;
+                document.getElementById(sidebarId).classList.add('active');
+
+            })
+            .catch(error => console.error('Error loading project content:', error));
+    }
+
+    function loadProjectContentNavBar(index) {
+        const projectFile = `ProjectsNormal/project${index + 1}.html`; 
+        fetch(projectFile)
+            .then(response => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.text();
+            })
+            .then(html => {
+
+                mainContent.innerHTML = html;
+
+            })
+            .catch(error => console.error('Error loading project content:', error));
+    }
+
+    function reinitializeScrollSpy() {
+        const scrollSpyTarget = document.querySelector('body');
+        const bsScrollSpy = bootstrap.ScrollSpy.getInstance(scrollSpyTarget);
+        if (bsScrollSpy) {
+            bsScrollSpy.refresh(); // Refresh ScrollSpy if it's already initialized
+        } else {
+            new bootstrap.ScrollSpy(scrollSpyTarget, {
+                target: '.nav',
+                offset: 50,
+            });
+        }
+    }
+
+    // Attach event listeners to project cards initially
+    // attachCardListeners();
+    reinitializeScrollSpy();
+
+    window.loadProjectContentNavBar = loadProjectContentNavBar;
+    window.onClickProjectContent = onClickProjectContent;
+
+});
+
+    </script>
+    
+    
+
+</body>
+
+</html>

@@ -13,6 +13,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- Google Font: Noto Sans Oriya Medium -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Oriya:wght@500&display=swap" rel="stylesheet">
+    <link rel="icon" href="./NewSite/images/favicon.png" type="image/png">
     <style>
         :root {
             --primary-color: #007bff;
@@ -596,7 +597,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 mb-4 offset-md-2">
+                    <div class="col-md-4 mb-4">
                         <div class="card project-card h-100"
                             onclick="onClickProjectContent('projectsNormal','ie','project-sidebar')">
                             <img src="NewSite/images/Projects/imggan/imageganbanner.png" class="card-img-top project-image"
@@ -607,6 +608,21 @@
                                     Adversarial Networks (GANs) to enhance the visual quality of images. This project
                                     focused on improving image sharpness, contrast, and brightness, creating
                                     high-quality outputs from low-resolution or noisy images.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4">
+                        <div class="card project-card h-100"
+                            onclick="onClickProjectContent('projectsNormal','gpt2probe','project-sidebar')">
+                            <img src="NewSite/images/Projects/gpt2probe/gpt2banner.jpg" class="card-img-top project-image"
+                                alt="Image Enhancement using GANs">
+                            <div class="card-body" style="margin-top: -5px;">
+                                <h5 class="card-title"><b>Probing GPT-2 Layers</b></h5>
+                                <p class="card-text-2">This Project focuses on analyzing the
+                                    inner workings of GPT-2, examining how its layers capture relationships like
+                                    entailment, contradiction, and neutrality. This project applies structural probing
+                                    techniques to dissect GPT-2, providing tools to study its layer-wise relationship
+                                    understanding.</p>
                             </div>
                         </div>
                     </div>
@@ -622,6 +638,20 @@
                                     lost. Community History Through AR is an Augmented Reality (AR) application designed
                                     to preserve the historical and cultural significance of the Harlem region while
                                     fostering civic engagement.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-4 offset-md-4">
+                        <div class="card project-card h-100"
+                            onclick="onClickProjectContent('projectsNormal','postag','project-sidebar')">
+                            <img src="NewSite/images/Projects/postag/postagbanner.jpeg" class="card-img-top project-image"
+                                alt="Image Enhancement using GANs">
+                            <div class="card-body" style="margin-top: -5px;">
+                                <h5 class="card-title"><b>POS Tagging and Autocorrection</b></h5>
+                                <p class="card-text-2">This Project encompasses two key NLP
+                                    tasks: Part-of-Speech (POS) Tagging and Autocorrection. These projects implement and
+                                    evaluate both traditional algorithms and neural approaches to solve fundamental NLP
+                                    challenges.</p>
                             </div>
                         </div>
                     </div>
@@ -778,7 +808,7 @@
 
             function onClickProjectContent(folder, name, bar) {
                 const projectFile = `NewSite/${folder}/${name}.html`;
-                const sidebarFile = `NewSite/Sidebars/${bar}.html`;
+                const sidebarFile = `NewSite/sidebars/${bar}.html`;
                 const sidebarId = `side-${name}`;
 
                 fetch(projectFile)

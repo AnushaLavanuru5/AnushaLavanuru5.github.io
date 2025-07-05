@@ -14,7 +14,7 @@ interface Job {
     endDate: string;
     goals: string[];
     currentJob: boolean;
-    image: string;
+    image: ImageMetadata;
 }
 
 const {jobData} = Astro.props;  // Ensure correct typing for the props

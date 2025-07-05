@@ -3,7 +3,7 @@ export const SITE = {
     title: "AL Portfolio",
     description: "Hey :), It's my portfolio",
     tags: ["portfolio", "Resume cv", "Columbia"],
-    ogImage: "/og-image.webp", //TODO
+    ogImage: "/og-image.webp", //TODO::
     logo: "logo-cropped",
     logoText: "Portfolio",
     lang: "en",

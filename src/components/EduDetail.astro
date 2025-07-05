@@ -1,0 +1,46 @@
+---
+// component imports
+import {Badge} from "./ui/badge";
+import {Image} from "astro:assets";
+
+// lib imports
+import {formatDatetime} from "../lib/utils";
+
+interface Edu {
+    title: string;
+    school: string;
+    location: string;
+    startDate: string;
+    endDate?: string;
+    description: string;
+    currentUni: boolean;
+    image: string;
+}
+
+const {eduData} = Astro.props;  // Ensure correct typing for the props
+const {
+    title,
+    school,
+    location,
+    startDate,
+    endDate,
+    description,
+    currentUni,
+    image
+} = eduData as Edu;
+---
+
+<div class="flex flex-col gap-2">
+    <h1 class="text-xl font-bold">{title}</h1>
+    <h1 class="text-base font-bold">{school}</h1>
+    <div class="flex items-center gap-2">
+        <Badge className="bg-primary-light dark:bg-primary-dark w-fit rounded-md">
+            {formatDatetime(startDate)} - {currentUni ? "Present" : formatDatetime(endDate)}
+        </Badge>
+        <Badge className="bg-primary-light dark:bg-primary-dark w-fit rounded-md">
+            {location}
+        </Badge>
+    </div>
+    <Image src={image} alt="Job Image" class="rounded-md my-2"/>
+    <p class="text-md">{description}</p>
+</div>

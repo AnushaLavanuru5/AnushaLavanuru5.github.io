@@ -1,0 +1,34 @@
+---
+// data imports
+import workExperience from "@/data/Jobs.ts"
+
+// component imports
+import JobDetails from "./JobDetails.astro";
+
+// config import
+import {ME} from '@/config';
+
+---
+
+<div class="relative flex flex-col gap-8 text-n700 dark:text-n200 w-full mt-10 px-4 mb-4">
+    {/*Work experience section*/}
+    <div class="mb-4">
+        <h2 class="text-3xl font-bold mb-4">Work Experience</h2>
+        <div class="flex flex-col gap-6">
+            {workExperience[0].map((job) => (
+                    <JobDetails jobData={job}/>
+            ))}
+        </div>
+    </div>
+</div>
+<div class="relative flex flex-col gap-8 text-n700 dark:text-n200 w-full mt-10 px-4">
+    {/*Work experience section*/}
+    <div class="mb-4">
+        <h2 class="text-3xl font-bold mb-4">Research Experience</h2>
+        <div class="flex flex-col gap-6">
+            {workExperience[1].map((job) => (
+                    <JobDetails jobData={job}/>
+            ))}
+        </div>
+    </div>
+</div>

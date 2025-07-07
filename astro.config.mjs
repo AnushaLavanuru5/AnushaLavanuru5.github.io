@@ -12,7 +12,8 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://AnushaLavanuru5/AnushaLavanuru5.github.io/',
+    site: 'https://AnushaLavanuru5.github.io/',
+    base: '/',
     integrations: [mdx(), react(), tailwind({
         applyBaseStyles: false,
     }), icon(), sitemap()],

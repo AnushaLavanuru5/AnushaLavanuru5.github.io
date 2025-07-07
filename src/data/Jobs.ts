@@ -22,6 +22,7 @@ interface WorkExperience {
     goals: string[];
     currentJob: boolean;
     image: ImageMetadata;
+    url: string;
 }
 
 /**
@@ -43,6 +44,7 @@ interface WorkExperience {
  * @property {Array<string>} goals - A list of goals or achievements within the job.
  * @property {boolean} currentJob - A flag indicating if the job is the current one.
  * @property {ImageMetadata} image - image for the current job.
+ * @property {string} url - image for the current job.
  */
 
 import arklexLogo from '../assets/images/WorkExp/arklexlogo.png';
@@ -68,6 +70,7 @@ const workExperience: WorkExperience[][] = [
             ],
             currentJob: true,
             image: arklexLogo,
+            url: "https://www.arklex.ai/",
         },
         {
             title: "Software Development Engineer Intern",
@@ -85,6 +88,7 @@ const workExperience: WorkExperience[][] = [
             ],
             currentJob: false,
             image: cbsLogo,
+            url: "https://business.columbia.edu/",
         },
         {
             title: "Software Engineer",
@@ -102,6 +106,7 @@ const workExperience: WorkExperience[][] = [
             ],
             currentJob: false,
             image: shureLogo,
+            url: "https://www.shure.com/en-US",
         },
     ],
     [
@@ -123,6 +128,7 @@ const workExperience: WorkExperience[][] = [
             ],
             currentJob: false,
             image: cguiLogo,
+            url: "https://graphics.cs.columbia.edu/home",
         },
         {
             title: "Research Assistant",
@@ -142,6 +148,7 @@ const workExperience: WorkExperience[][] = [
             ],
             currentJob: false,
             image: cealLogo,
+            url: "https://ceal.cs.columbia.edu/",
         },
     ]
 ];

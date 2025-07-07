@@ -13,13 +13,13 @@ import columbiaLogo from '../assets/images/eduExp/alma-mater.png';
 
 const education: Education[] = [
   {
-    title: "Master of Science in Computer Science",
+    title: "M.S. in Computer Science – Focus in ML & AI",
     startDate: "2023-08-01",
     endDate: "2024-12-31",
     school: "Columbia University in City of New York",
     location: "New York, United States",
     description:
-      "Focused on ML, NLP, Data Visualization, AR/VR, UI Design, and Human-Computer Interaction. Served as TA for UI Design, Databases, and Computing in Context.",
+      "Focused on ML, AI, NLP, Data Visualization, AR/VR, UI Design, and Human-Computer Interaction. Served as TA for UI Design, Databases, and Computing in Context.",
     currentUni: false,
     image: columbiaLogo,
   },

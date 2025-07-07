@@ -4,6 +4,10 @@ export const menu = [
         label: 'Home',
     },
     {
+        href: '/?tab=workxp',
+        label: 'Work Experience',
+    },
+    {
         href: '/projects',
         label: 'Projects',
     },

@@ -12,7 +12,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-    site: 'https://AnushaLavanuru5.github.io/',
+    site: 'https://AnushaLavanuru5.github.io/AnushaLavanuru5.github.io/',
     integrations: [mdx(), react(), tailwind({
         applyBaseStyles: false,
     }), icon(), sitemap()],

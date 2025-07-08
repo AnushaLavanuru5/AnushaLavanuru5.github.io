@@ -11,7 +11,13 @@ export default {
 				lg: "520px",
 				xl: "620px"
 			},
-			padding: '2rem',
+			padding: {
+                DEFAULT: '2rem', 
+                sm: '1rem',      
+                md: '2rem',      
+                lg: '2rem',      
+                xl: '2rem',     
+            },
 		},
     	extend: {
     		borderRadius: {

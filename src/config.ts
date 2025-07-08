@@ -19,17 +19,17 @@ export const ME = {
     profileImage: "pp2.jpg",
     profileFacts: [
         {
-            value: "3+",
-            description: "Years of Experience"
+            value: "New York, USA",
+            description: "Location 📍"
         },
         {
-            value: "NYC, USA",
-            description: "Location"
+            value: "3+",
+            description: "Experience 💼"
         },
         {
             value: "Columbia University",
-            description: "Graduated From"
-        },
+            description: "Graduated 🎓"
+        }
     ],
     contactInfo: {
         email: "al4568@columbia.edu",

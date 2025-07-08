@@ -32,14 +32,14 @@ const { Content } = await render(post);
             </p>
         </div>
         <Image transition:name={`${post.id}-image`} class="rounded-2xl" src={cover} alt="Main project image"/>
-        <p>
+        <p class="text-justify">
             {summary}
         </p>
         <a href={url}>
             Visit the project ↗
         </a>
 
-        <article id="article" class="mt-8 prose dark:prose-invert">
+        <article id="article" class="mt-8 prose text-justify dark:prose-invert">
             <Content/>
         </article>
         <BackToTop />

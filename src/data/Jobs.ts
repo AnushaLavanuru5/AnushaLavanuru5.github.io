@@ -23,6 +23,7 @@ interface WorkExperience {
     currentJob: boolean;
     image: ImageMetadata;
     url: string;
+    tags: string[];
 }
 
 /**
@@ -45,6 +46,7 @@ interface WorkExperience {
  * @property {boolean} currentJob - A flag indicating if the job is the current one.
  * @property {ImageMetadata} image - image for the current job.
  * @property {string} url - image for the current job.
+ * @property {Array<string>} tags - A list of tags within the job.
  */
 
 import arklexLogo from '../assets/images/WorkExp/arklexlogo.png';
@@ -65,12 +67,16 @@ const workExperience: WorkExperience[][] = [
                 "Built an enterprise version of the Arklex AI platform by extending frontend, backend, and chatbot repositories. Created a production-ready AMI for AWS EC2 using K3s Kubernetes and handled cross-region infrastructure migration.",
             goals: [
                 "Extended core frontend, backend, and chatbot codebases (React, Next.js, Golang) for client-specific SaaS deployments.",
-                "Provisioned production-ready AMI with K3s Kubernetes cluster including MySQL, Redis, and Milvus databases.",
+                "Provisioned production-ready AMI with K3s Kubernetes cluster including MySQL, Redis, InfluxDB and Milvus databases.",
                 "Migrated infrastructure from ap-southeast-1 to us-east-1 (S3, ECR, RDS, ElastiCache), reducing latency by 50ms and operational costs by 15%."
             ],
             currentJob: true,
             image: arklexLogo,
             url: "https://www.arklex.ai/",
+            tags: [
+                "Go", "React", "Next.js", "Python", "Kubernetes", "AWS", 
+                "MySQL", "Redis", "Milvus", "InfluxDB", "EC2", "K3s", "S3", "ECR", "RDS", "ElastiCache"
+            ],
         },
         {
             title: "Software Development Engineer Intern",
@@ -89,6 +95,10 @@ const workExperience: WorkExperience[][] = [
             currentJob: false,
             image: cbsLogo,
             url: "https://business.columbia.edu/",
+            tags: [
+                "React", "Redux", "Context API", "Java", "Spring Boot", 
+                "PostgreSQL", "Python", "OCR"
+            ],
         },
         {
             title: "Software Engineer",
@@ -107,6 +117,10 @@ const workExperience: WorkExperience[][] = [
             currentJob: false,
             image: shureLogo,
             url: "https://www.shure.com/en-US",
+            tags: [
+                "Python", "Flask", "Selenium", "Jenkins", "CI/CD", "AWS", 
+                "DynamoDB", "S3", "AWS-MSK", "Agile"
+            ],
         },
     ],
     [
@@ -129,6 +143,11 @@ const workExperience: WorkExperience[][] = [
             currentJob: false,
             image: cguiLogo,
             url: "https://graphics.cs.columbia.edu/home",
+            tags: [
+                "Unity", "C#", "XR", "Photon Fusion", "Oculus Quest", 
+                "HoloLens", "Geospatial", "UI/UX", 
+                "Real-time Networking"
+            ],
         },
         {
             title: "Research Assistant",
@@ -149,6 +168,9 @@ const workExperience: WorkExperience[][] = [
             currentJob: false,
             image: cealLogo,
             url: "https://ceal.cs.columbia.edu/",
+            tags: [
+                "Unity", "C#", "AR", "Figma", "UI/UX"
+            ],
         },
     ]
 ];

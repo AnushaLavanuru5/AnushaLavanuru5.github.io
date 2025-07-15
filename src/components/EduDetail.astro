@@ -2,6 +2,7 @@
 // component imports
 import {Badge} from "./ui/badge";
 import {Image} from "astro:assets";
+import Slideshow from "./Slideshow";
 
 // lib imports
 import {formatDatetime} from "../lib/utils";
@@ -14,7 +15,7 @@ interface Edu {
     endDate?: string;
     description: string;
     currentUni: boolean;
-    image: ImageMetadata;
+    images: ImageMetadata[];
 }
 
 const {eduData} = Astro.props;  // Ensure correct typing for the props
@@ -26,7 +27,7 @@ const {
     endDate,
     description,
     currentUni,
-    image
+    images
 } = eduData as Edu;
 ---
 
@@ -41,6 +42,7 @@ const {
             {location}
         </Badge>
     </div>
-    <Image src={image} alt="Job Image" class="rounded-md my-2"/>
+    <!-- <Image src={image} alt="Job Image" class="rounded-md my-2"/> -->
+    <Slideshow images={images} client:load />
     <p class="text-md text-justify">{description}</p>
 </div>

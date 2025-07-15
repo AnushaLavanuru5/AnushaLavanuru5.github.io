@@ -6,10 +6,12 @@ interface Education {
     location: string;
     description: string;
     currentUni: boolean;
-    image: ImageMetadata;
+    images: ImageMetadata[];
 }
 
-import columbiaLogo from '../assets/images/eduExp/alma-mater.png';
+import columbia1 from '../assets/images/columbiaSS/columbia1.jpeg';
+import columbia2 from '../assets/images/columbiaSS/columbia2.png';
+import columbia3 from '../assets/images/columbiaSS/columbia3.jpeg';
 
 const education: Education[] = [
   {
@@ -21,7 +23,7 @@ const education: Education[] = [
     description:
       "Focused on ML, AI, NLP, Data Visualization, AR/VR, UI Design, and Human-Computer Interaction. Served as TA for UI Design, Databases, and Computing in Context.",
     currentUni: false,
-    image: columbiaLogo,
+    images: [columbia1, columbia2, columbia3],
   },
   // {
   //   title: "Bachelor of Technology in Computer Science",

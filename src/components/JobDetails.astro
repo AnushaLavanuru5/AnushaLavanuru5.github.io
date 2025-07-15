@@ -16,6 +16,7 @@ interface Job {
     currentJob: boolean;
     image: ImageMetadata;
     url: string;
+    tags: string[];
 }
 
 const {jobData} = Astro.props;  // Ensure correct typing for the props
@@ -29,6 +30,7 @@ const {
     currentJob,
     image,
     url,
+    tags,
 } = jobData as Job;
 
 ---
@@ -47,9 +49,16 @@ const {
     <a href={url} target="_blank" rel="noopener noreferrer">
         <Image src={image} alt="Job Image" class="rounded-md my-2"/>
     </a>    
+
+    <div class="flex flex-wrap items-center gap-2">
+        {tags.map((tag: string) => (
+            <Badge className="truncate bg-primary-light dark:bg-primary-dark w-fit rounded-md whitespace-nowrap  ">{tag}</Badge>
+        ))}
+    </div>
+    <!-- {tags.join(', ')} -->
     <ul style="list-style: disc;">
         {goals.map((goal: string) => (
-                <li class="text-base text-justify">{goal}</li>
+            <li class="text-base text-justify">{goal}</li>
         ))}
     </ul>
 </div>

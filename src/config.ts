@@ -15,21 +15,21 @@ export const SITE = {
 
 export const ME = {
     name: "Anusha Lavanuru",
-    profession: "Software Engineer | Full Stack Developer",
+    profession: "Software Engineer | ML & AI | Full Stack",
     profileImage: "pp2.jpg",
     profileFacts: [
+        {
+            value: "Columbia University",
+            description: "Graduated 🎓"
+        },
+        {
+            value: "3+",
+            description: "Years of experience 💼"
+        },
         {
             value: "New York, USA",
             description: "Location 📍"
         },
-        {
-            value: "3+",
-            description: "Experience 💼"
-        },
-        {
-            value: "Columbia University",
-            description: "Graduated 🎓"
-        }
     ],
     contactInfo: {
         email: "al4568@columbia.edu",

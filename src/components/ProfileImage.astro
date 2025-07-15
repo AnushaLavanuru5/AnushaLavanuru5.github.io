@@ -1,3 +1,4 @@
+<!--
 ---
 // library imports
 import type {ImageMetadata} from 'astro';
@@ -26,4 +27,15 @@ if (!images[imagePath]) throw new Error(`"${imagePath}" does not exist in glob: 
         src={images[imagePath]()}
         alt="profile avatar"
         loading="eager"
-/>
+/>  -->
+
+
+---
+import StoryViewer from '@/components/StoryViewer';
+
+const storiesGlob = import.meta.glob<{ default: any }>('/src/assets/stories/*.{jpg,jpeg,png}');
+const modules = await Promise.all(Object.values(storiesGlob).map((fn) => fn()));
+const storyImages = modules.map(mod => mod.default.src);
+---
+
+<StoryViewer client:load images={storyImages} />

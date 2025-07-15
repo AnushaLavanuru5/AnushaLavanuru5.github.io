@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import pp2 from '/src/assets/pp2.jpg';
 
 export default function StoryViewer({ images }: { images: string[] }) {
   const [open, setOpen] = useState(false);
@@ -45,7 +46,7 @@ export default function StoryViewer({ images }: { images: string[] }) {
   return (
     <>
       <img
-        src="/src/assets/pp.jpg"
+        src={pp2.src}
         alt="Profile"
         className="rounded-full w-[130px] md:w-[140px] object-cover cursor-pointer"
         onClick={() => setOpen(true)}
